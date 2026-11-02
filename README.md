@@ -18,6 +18,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Rotas
+
+O projeto usa o App Router do Next.js: cada arquivo `page.tsx` dentro de `app` cria uma rota.
+
+- `app/page.tsx` → `/`
+- `app/Home/page.tsx` → `/Home`
+
+A navegação entre essas páginas fica no layout compartilhado em `app/layout.tsx`. Para criar outra rota, adicione uma pasta com o nome do caminho e um `page.tsx` dentro dela, por exemplo, `app/sobre/page.tsx` para `/sobre`.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
