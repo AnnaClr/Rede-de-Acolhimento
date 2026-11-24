@@ -1,12 +1,19 @@
-import "./globals.css";
+import type { ReactNode } from "react";
+import { createThemeStylesheet } from "../src/styles/theme.js";
+import "../src/styles/globals.css";
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+const themeStylesheet = createThemeStylesheet();
+
+export const metadata = {
+  title: "Espaços Acolhedores",
+  description: "Rede comunitária de informação e acolhimento.",
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-BR" data-theme="dark" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>sem nome</title>
+        <style dangerouslySetInnerHTML={{ __html: themeStylesheet }} />
       </head>
       <body>
         {children}

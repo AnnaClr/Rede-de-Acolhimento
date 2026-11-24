@@ -1,11 +1,12 @@
-import Footer from "./_components/Footer";
-import Header from "./_components/Header";
-import Main from "./_components/Main";
+import Footer from "@/src/components/Footer/Footer";
+import Header from "@/src/components/Header/Header";
+import Main from "@/src/components/pages/forum/Main";
+import "./style.css";
 
 export default function Forum() {
   return (
     <>
-      <Header />
+      <Header activePath="/forum" />
       <Main />
       <Footer />
     </>

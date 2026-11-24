@@ -1,10 +1,11 @@
-import Header from "./_components/Header";
-import Main from "./_components/Main";
+import Header from "@/src/components/Header/Header";
+import Main from "@/src/components/pages/login/Main";
+import "./style.css";
 
 export default function Login() {
   return (
     <>
-      <Header />
+      <Header activePath="/login" />
       <Main />
     </>
   );

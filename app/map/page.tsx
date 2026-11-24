@@ -1,15 +1,13 @@
-import { Suspense } from "react";
-import Footer from "./_components/Footer";
-import Header from "./_components/Header";
-import Main from "./_components/Main";
+import Footer from "@/src/components/Footer/Footer";
+import Header from "@/src/components/Header/Header";
+import Main from "@/src/components/pages/map/Main";
+import "./style.css";
 
 export default function MapPage() {
   return (
     <>
-      <Header />
-      <Suspense fallback={null}>
-        <Main />
-      </Suspense>
+      <Header activePath="/map" />
+      <Main />
       <Footer />
     </>
   );

@@ -1,0 +1,5 @@
+@import "../../src/styles/auth.css";
+
+.signup-page .auth-card {
+    max-width: 480px;
+}

@@ -1,0 +1,121 @@
+.auth-wrap {
+  min-height: calc(100vh - var(--header-h));
+  display: grid;
+  place-items: center;
+  padding: var(--space-7) var(--space-4);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-6);
+  border: 1px solid var(--border-pride);
+  border-top: 4px solid transparent;
+  border-image: var(--gradient-pride) 1;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.auth-card h1 {
+  margin-bottom: var(--space-2);
+  font-size: 1.6rem;
+}
+
+.auth-card .auth-sub {
+  margin-bottom: var(--space-5);
+}
+
+.toggle-pass {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  padding: 6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.toggle-pass:hover {
+  color: var(--text-primary);
+}
+
+.toggle-pass svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.field-error {
+  display: none;
+  margin-top: 4px;
+  color: var(--danger);
+  font-size: 0.8rem;
+}
+
+.field-error.show {
+  display: block;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+.checkbox-row input {
+  margin-top: 3px;
+  accent-color: var(--purple);
+}
+
+.checkbox-row label {
+  display: block;
+}
+
+.form-msg {
+  display: none;
+  margin-bottom: var(--space-4);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+}
+
+.form-msg.show {
+  display: block;
+}
+
+.form-msg.error {
+  border: 1px solid var(--error-border);
+  background: var(--error-surface);
+  color: var(--danger-light);
+}
+
+.form-msg.success {
+  border: 1px solid var(--success-border);
+  background: var(--success-surface);
+  color: var(--success-light);
+}
+
+.auth-foot {
+  margin-top: var(--space-5);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-4);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: var(--space-5);
+  }
+}

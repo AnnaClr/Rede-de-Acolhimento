@@ -1,0 +1,330 @@
+.map-page .map-layout {
+  display: grid;
+  min-height: 600px;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.map-page .map-status {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(calc(100% - 48px), 520px);
+  transform: translate(-50%, -50%);
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid var(--border-pride);
+  border-top: 4px solid var(--flag-violet);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface);
+  box-shadow: var(--shadow-panel);
+  text-align: center;
+}
+
+.map-page .map-status-label {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  padding: 6px 12px;
+  border: 1px solid var(--border-pride);
+  border-radius: var(--radius-full);
+  background: var(--surface-accent);
+  color: var(--violet-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.map-page .map-status h2 {
+  margin-bottom: var(--space-3);
+  background: var(--gradient-pride);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+}
+
+:root[data-theme="light"] .map-page .map-status h2 {
+  background: none;
+  color: var(--purple);
+  -webkit-text-fill-color: var(--purple);
+}
+
+.map-page .map-status p {
+  max-width: 58ch;
+  margin: 0 auto;
+}
+
+.map-page .map-forum-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: calc(-1 * var(--space-3)) 0 var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-pride);
+  border-left: 4px solid var(--flag-violet);
+  border-radius: var(--radius-md);
+  background: var(--gradient-surface);
+}
+
+.map-page .map-forum-status-label {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border: 1px solid var(--border-pride);
+  border-radius: var(--radius-full);
+  background: var(--surface-accent);
+  color: var(--violet-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.map-page .map-forum-status p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+.map-page .map-canvas {
+  position: relative;
+  min-height: 480px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--border-purple);
+  border-radius: var(--radius-lg);
+  background: var(--map-canvas-background);
+  box-shadow: var(--map-canvas-shadow);
+}
+
+.map-page .map-canvas::before {
+  position: absolute;
+  z-index: -1;
+  inset: -35%;
+  background: var(--map-pattern-background);
+  content: "";
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.map-page .map-grid-lines {
+  position: absolute;
+  inset: 24px;
+  border: 1px solid var(--map-grid-border);
+  border-radius: var(--radius-md);
+  background-image: var(--map-grid-background);
+  background-size: 56px 56px;
+  pointer-events: none;
+}
+
+.map-page .map-label {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--map-label-surface);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.map-page .map-marker {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 3px solid var(--map-marker-border);
+  border-radius: 50%;
+  background: var(--purple);
+  outline: 1px solid var(--purple);
+  box-shadow: 0 0 7px currentColor, 0 0 14px currentColor;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  animation: map-marker-arrive 420ms ease both;
+}
+
+.map-page .map-marker::before {
+  position: absolute;
+  inset: -6px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  opacity: 0.4;
+  animation: map-marker-pulse 3s ease-out infinite;
+}
+
+.map-page .map-marker::after {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FFF;
+  box-shadow: 0 0 8px #FFF;
+  content: "";
+}
+
+.map-page .map-marker[data-cat="acolhimento"] {
+  color: var(--flag-red);
+  background: var(--flag-red);
+  outline-color: var(--flag-red);
+}
+
+.map-page .map-marker[data-cat="saude"],
+.map-page .map-marker[data-cat="servicos"] {
+  color: var(--flag-blue);
+  background: var(--flag-blue);
+  outline-color: var(--flag-blue);
+}
+
+.map-page .map-marker[data-cat="assistencia"] {
+  color: var(--flag-green);
+  background: var(--flag-green);
+  outline-color: var(--flag-green);
+}
+
+.map-page .map-marker[data-cat="cultura"] {
+  color: var(--flag-yellow);
+  background: var(--flag-yellow);
+  outline-color: var(--flag-yellow);
+}
+
+.map-page .map-marker[data-cat="eventos"],
+.map-page .map-marker[data-cat="direitos"] {
+  color: var(--flag-violet);
+  background: var(--flag-violet);
+  outline-color: var(--flag-violet);
+}
+
+.map-page .map-marker[data-cat="organizacoes"] {
+  color: var(--flag-orange);
+  background: var(--flag-orange);
+  outline-color: var(--flag-orange);
+}
+
+.map-page .map-marker:hover,
+.map-page .map-marker.active {
+  z-index: 5;
+  outline: 2px solid var(--text-primary);
+  box-shadow: 0 0 0 4px var(--map-active-ring), 0 0 14px currentColor, 0 0 26px currentColor;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.map-page .map-marker.active::before {
+  animation-duration: 1.8s;
+}
+
+.map-page .map-side {
+  display: flex;
+  max-height: 600px;
+  flex-direction: column;
+  gap: var(--space-4);
+  overflow-y: auto;
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface);
+  box-shadow: var(--shadow-panel);
+}
+
+.map-page .map-side h3 {
+  margin: 0;
+}
+
+.map-page .side-empty {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.map-page .info-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.map-page .info-list li {
+  display: flex;
+  gap: var(--space-3);
+  font-size: 0.92rem;
+}
+
+.map-page .info-list li svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--purple);
+}
+
+.map-page .info-list strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@keyframes map-marker-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.65;
+  }
+
+  100% {
+    transform: scale(2.05);
+    opacity: 0;
+  }
+}
+
+@keyframes map-marker-arrive {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .map-page .map-layout {
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .map-page .map-canvas {
+    min-height: clamp(360px, 72vw, 480px);
+  }
+
+  .map-page .map-side {
+    max-height: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-page .map-forum-status {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .map-page .map-canvas {
+    min-height: clamp(340px, 100vw, 420px);
+  }
+
+  .map-page .map-status {
+    width: calc(100% - 28px);
+  }
+
+  .map-page .map-grid-lines {
+    inset: 14px;
+  }
+
+  .map-page .map-side {
+    padding: var(--space-4);
+  }
+}

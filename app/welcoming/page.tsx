@@ -1,7 +1,10 @@
-export default function welcoming() {
+import "./style.css";
+
+export default function Welcoming() {
   return (
-    <main>
-      <h1>Welcoming</h1>
+    <main id="conteudo" className="container section welcoming-page">
+      <h1>Boas-vindas</h1>
+      <p>Esta seção está em preparação.</p>
     </main>
   );
 }

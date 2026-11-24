@@ -1,12 +1,13 @@
 import { Suspense } from "react";
-import Footer from "./_components/Footer";
-import Header from "./_components/Header";
-import Main from "./_components/Main";
+import Footer from "@/src/components/Footer/Footer";
+import Header from "@/src/components/Header/Header";
+import Main from "@/src/components/pages/explore/Main";
+import "./style.css";
 
 export default function Explore() {
   return (
     <>
-      <Header />
+      <Header activePath="/explore" />
       <Suspense fallback={null}>
         <Main />
       </Suspense>
